@@ -68,7 +68,7 @@ function Navbar() {
               </a>
             </li>
             <li>
-              <a href="#" className="material-symbols-outlined">
+              <a href="#" className="material-symbols-outlined" id="setting">
                 settings
               </a>
             </li>

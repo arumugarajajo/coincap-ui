@@ -1,9 +1,6 @@
 import React from "react";
 import "./Footer.css";
-import facebook from "../../Assets/facebook.png";
-import whatsapp from "../../Assets/whatsapp.png";
-import instagram from "../../Assets/insta.png";
-import telegram from "../../Assets/telegram.png";
+import playstore from "../../Assets/playstore.png"
 
 function Footer() {
   return (
@@ -29,32 +26,33 @@ function Footer() {
         <div className="column">
           <div className="header">DISCLAIMER</div>
           <p className="disclaimer">
-          Neither ShapeShift AG nor CoinCap are in any way associated with
-              CoinMarketCap, LLC or any of its goods and services.
+            Neither ShapeShift AG nor CoinCap are in any way associated with
+            CoinMarketCap, LLC or any of its goods and services.
           </p>
         </div>
         <div className="column">
           <div className="header">FOLLOW US</div>
           <div className="social-media">
-            <img src={facebook} alt="facebook" />
-            <img src={whatsapp} alt="whatsapp" />
-            <img src={instagram} alt="instagram" />
-            <img src={telegram} alt="telegram" />
+            <a href="#" class="fa fa-facebook"></a>
+            <a href="#" class="fa fa-twitter"></a>
+            <a href="#" class="fa fa-google"></a>
+            <a href="#" class="fa fa-skype"></a>
+            <a href="#" class="fa fa-instagram"></a>
           </div>
         </div>
         <div className="column">
           <div className="header">COINCAP APP AVAILABLE ON</div>
           <div className="store">
-            <img src={instagram} alt="instagram" />
+            <img src={playstore} alt="instagram" />
             <div className="text-area">
               <span>GET IN ON</span>
               <span className="platform">Google Play</span>
             </div>
           </div>
           <div className="store">
-            <img src={instagram} alt="instagram" />
+          <i class="fa fa-apple" style={{color:"white", fontSize:"32px", paddingRight:"10px"}}></i>
             <div className="text-area">
-              <span>GET IN ON</span>
+            <span>Download on the</span>
               <span className="platform">App Store</span>
             </div>
           </div>

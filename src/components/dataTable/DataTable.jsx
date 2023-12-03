@@ -5,6 +5,8 @@ function DataTable() {
   const [cryptoData, setCryptoData] = useState([]);
   const [visibleData, setVisibleData] = useState([]);
   const [loadedDataCount, setLoadedDataCount] = useState(0);
+  const [sortColumn, setSortColumn] = useState("rank");
+  const [sortOrder, setSortOrder] = useState("asc");
   const pageSize = 50;
 
   async function fetchData() {
@@ -48,6 +50,16 @@ function DataTable() {
       );
     }
   };
+  const handleSort = (column) => {
+    if (sortColumn === column) {
+      setSortOrder(sortOrder === "asc" ? "desc" : "asc");
+    } else {
+      setSortColumn(column);
+      setSortOrder("asc");
+    }
+  };
+
+ 
   
   return (
     <div className="datatable">
@@ -80,16 +92,20 @@ function DataTable() {
       </div>
       <div className="datatable-bottom">
         <table id="cryptoTable">
-          <thead>
+        <thead>
             <tr className="table-heading">
-              <th>Rank</th>
-              <th id="name-th">Name</th>
-              <th>Symbol</th>
-              <th>Price</th>
-              <th>Market Cap</th>
-              <th>vwap24Hr</th>
-              <th>Supply</th>
-              <th>Change(24Hr)</th>
+              <th onClick={() => handleSort("rank")}>Rank</th>
+              <th id="name-th" onClick={() => handleSort("name")}>
+                Name
+              </th>
+              <th onClick={() => handleSort("symbol")}>Symbol</th>
+              <th onClick={() => handleSort("priceUsd")}>Price</th>
+              <th onClick={() => handleSort("marketCapUsd")}>Market Cap</th>
+              <th onClick={() => handleSort("vwap24Hr")}>vwap24Hr</th>
+              <th onClick={() => handleSort("supply")}>Supply</th>
+              <th onClick={() => handleSort("changePercent24Hr")}>
+                Change(24Hr)
+              </th>
             </tr>
           </thead>
           <tbody>

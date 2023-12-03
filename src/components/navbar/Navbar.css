@@ -95,5 +95,36 @@
   font-size: 20px;
   vertical-align: middle;
 }
+/* responsive */
+@media screen and (max-width: 768px) {
 
-/* datatable-top */
+  .bottombar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+  }
+  .bottombar .left-section,
+  .bottombar .right-section {
+    display: none;
+  }
+  .bottombar .center-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  .bottombar .center-section img {
+    width: 60px; 
+    height: 30px; 
+  }
+  .bottombar .center-section img,
+  .bottombar .right-section ul {
+    margin: 0;
+  }
+  .bottombar .center-section img,
+  .bottombar .right-section a {
+    padding: 5px;
+    margin-left: 10px; 
+  }
+}

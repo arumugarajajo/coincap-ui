@@ -122,3 +122,28 @@
 .btn:hover {
   background: rgb(6, 158, 100) !important;
 }
+/* responsive */
+@media screen and (max-width: 768px) {
+  .datatable-bottom {
+    overflow-x: auto;
+    margin-top: -160px;
+    width: auto;
+  }
+
+  #cryptoTable {
+    width: 100%;
+    border-collapse: collapse;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  #cryptoTable th,
+  #cryptoTable td {
+    padding: 6px;
+    font-size: 14px;
+  }
+
+  .table-heading #name-th {
+    text-align: start;
+  }
+}
