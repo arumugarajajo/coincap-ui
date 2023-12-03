@@ -4,19 +4,15 @@ import "./DataTable.css";
 function DataTable() {
   const [cryptoData, setCryptoData] = useState([]);
   const [visibleData, setVisibleData] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
   const [loadedDataCount, setLoadedDataCount] = useState(0);
   const pageSize = 50;
 
   async function fetchData() {
     try {
-      const response = await fetch(
-        `https://api.coincap.io/v2/assets`
-      );
+      const response = await fetch(`https://api.coincap.io/v2/assets`);
       const data = await response.json();
       setCryptoData(data.data || []);
       setLoadedDataCount(pageSize);
-
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -29,7 +25,7 @@ function DataTable() {
   useEffect(() => {
     setVisibleData(cryptoData.slice(0, loadedDataCount));
   }, [cryptoData, loadedDataCount]);
-  
+
   const loadMore = async () => {
     try {
       setLoadedDataCount((prevCount) => prevCount + pageSize);
@@ -37,6 +33,22 @@ function DataTable() {
       console.error("Error fetching more data:", error);
     }
   };
+  const renderPercentage = (percentage) => {
+    if (parseFloat(percentage) <= 0) {
+      return (
+        <span style={{ color: 'red' }}>
+          {parseFloat(percentage).toFixed(2)}%
+        </span>
+      );
+    } else {
+      return (
+        <span style={{color:"green"}}>
+          {parseFloat(percentage).toFixed(2)}%
+        </span>
+      );
+    }
+  };
+  
   return (
     <div className="datatable">
       <div className="datatable-top">
@@ -71,37 +83,45 @@ function DataTable() {
           <thead>
             <tr className="table-heading">
               <th>Rank</th>
-              <th>Name</th>
+              <th id="name-th">Name</th>
               <th>Symbol</th>
-              <th>Price (USD)</th>
-              <th>Market Cap (USD)</th>
-              <th>Change (24H)</th>
-              <th>Explorer</th>
+              <th>Price</th>
+              <th>Market Cap</th>
+              <th>vwap24Hr</th>
+              <th>Supply</th>
+              <th>Change(24Hr)</th>
             </tr>
           </thead>
           <tbody>
             {visibleData.map((item, index) => (
               <tr className="table-data" key={index}>
-                <td>{item.rank}</td>
-                <td>{item.name}</td>
+              <td>{item.rank}</td>
+             <td className="name-col">
+             <div className="icon">
+               <img
+                 className="icon-img"
+                 src={`https://assets.coincap.io/assets/icons/${item.symbol.toLowerCase()}@2x.png`}
+                 alt={item.symbol}
+               />
+             </div>
+             <div className="name-symbol">
+               <span className="name">{item.name}</span>
+               <span className="symbol">{item.symbol}</span>
+             </div>
+           </td>
                 <td>{item.symbol}</td>
-                <td>{item.priceUsd}</td>
-                <td>{item.marketCapUsd}</td>
-                <td>{item.changePercent24Hr}%</td>
-                <td>
-                  <a
-                    href={item.explorer}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Explorer
-                  </a>
-                </td>
+                <td>{Number(item.priceUsd).toFixed(2)}</td>
+                <td>{Number(item.marketCapUsd/ 1e9).toFixed(2)+'b'}</td>
+                <td>{Number(item.vwap24Hr).toFixed(2)}</td>
+                <td>{Number(item.supply/ 1e6).toFixed(2) + 'm'}</td>
+                <td>{renderPercentage(item.changePercent24Hr)}</td>
               </tr>
             ))}
           </tbody>
         </table>
-        <button className="btn" onClick={loadMore}>Load More</button>
+        <button className="btn" onClick={loadMore}>
+          Load More
+        </button>
       </div>
     </div>
   );

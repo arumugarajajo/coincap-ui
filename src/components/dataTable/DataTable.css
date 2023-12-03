@@ -49,13 +49,15 @@
 
 #cryptoTable th,
 #cryptoTable td {
-  border: 1px solid #ddd;
+  /* border: 1px solid #ddd; */
   padding: 8px;
-  text-align: left;
+  text-align: center;
   cursor: pointer;
   font-size: 16px;
 }
-
+.table-heading #name-th{
+  text-align: start;
+}
 #cryptoTable th {
   background-color: #f2f2f2;
 }
@@ -73,9 +75,39 @@
   background-color: rebeccapurple;
   padding-top: 10px;
 }
+.table-data {
+  text-align: center;
+  align-items: center;
+}
+.name-col {
+  display: flex;
+  align-items: center;
+}
+
+.icon img{
+  margin-right: 5px;
+  width: 32px;
+  height: 32px;
+  padding-top: 5px;
+}
+
+.name-symbol {
+  display: flex;
+  flex-direction: column;
+}
+
+.name {
+  text-align: start;
+}
+.symbol {
+  text-align: start;
+  font-weight: 400;
+  font-size: 12px;
+  color: rgb(67, 66, 66);
+}
 /* button */
 .btn {
-  margin-top: 10px;
+  margin: 24px;
   padding: 8px 16px;
   background: rgb(24, 198, 131) !important;
   color: #fff;
@@ -88,5 +120,5 @@
 }
 
 .btn:hover {
-  background-color: #0056b3;
+  background: rgb(6, 158, 100) !important;
 }
